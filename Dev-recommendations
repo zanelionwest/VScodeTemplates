@@ -1,0 +1,122 @@
+# Recommendations for React Typescript Developers
+​
+## Editor font: Fira code
+​
+I recommend highly that you change your editor's font to use [Fira Code](https://github.com/tonsky/FiraCode/wiki/VS-Code-Instructions). This is a font that will replace boolean operators (e.g. `!==`) with actual mathematical symbols (just makes the code nicer to read again).
+​
+## Recommended Extensions
+​
+There are a bunch of recommended extensions that have been listed in the [VS Code Folder](./.vscode/extensions.json). I would suggest that you install all of them.
+​
+## Recommended Settings
+​
+There are a bunch of workspace level settings that have been defined in the [VS Code Folder](./.vscode/settings.json). I would suggest that you have a look through your own editor settings and make sure no user settings are overriding any workspace rules.
+​
+To find your own editor settings: Go to View > Command Palette > Search "Settings" and click "Preferences: Open User Settings (JSON)".
+​
+## Recommended Snippet
+​
+Here is a snippet which can be used to create a template for a new Typescript React Functional Component with its name based on the file name you run the snippet in.
+​
+To use it: Go to View > Command Palette > Search "Snippets" and click "Snippets: Configure User Snippets" > Type "Typescript" and click "typescriptreact". This will open up a JSON file, in which you should paste the following:
+​
+```json
+"Create New React Typescript Component": {
+  "prefix": "raftc",
+  "body": [
+    "import s from './${TM_FILENAME_BASE:Component}.module.scss';",
+    "",
+    "/**",
+    " * Props Type Interface for {@link ${TM_FILENAME_BASE:Component}}",
+    " */",
+    "export interface ${TM_FILENAME_BASE:Component}Props {}",
+    "",
+    "/**",
+    " * ",
+    " * @param {${TM_FILENAME_BASE:Component}Props} props",
+    " * @returns {JSX.Element}",
+    " */",
+    "const $TM_FILENAME_BASE = ({}: ${TM_FILENAME_BASE:Component}Props): JSX.Element => {",
+    "  return (",
+    "    <div className={s.wrapper}>",
+    "      <p></p>",
+    "    </div>",
+    "  );",
+    "};",
+    "",
+    "export default $TM_FILENAME_BASE;",
+    "",
+  ],
+  "description": "Create New React Typescript Component"
+}
+```
+​
+Once you have saved the file VS Code should automatically make this snippet available to you.
+​
+Create a new file called something like `Test.tsx` and type `raftc`. You should now see a template for a React component which sets up:
+​
+- Importing an SCSS modules file
+- Exported interface describing the Props of the component
+- JS doc comment outline, so the developer can give a description of the component
+- React Component template with typed and deconstructed props and basic JSX
+​
+And once you run the snippet it should all be using `Test`, so `import s from 'Test.module.scss';`, `export interface TestProps {}` and `export default Test;`
+
+
+
+///////
+
+{
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.tabSize": 2,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.linkedEditing": true,
+  "editor.detectIndentation": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferences.jsxAttributeCompletionStyle": "auto",
+  "typescript.preferences.jsxAttributeCompletionStyle": "auto",
+  "[scss]": {
+    "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter"
+  },
+  "eslint.workingDirectories": [
+    {
+      "directory": ".",
+      "!cwd": true,
+    }
+  ],
+  "eslint.validate": ["javascript", "typescript", "html", "javascriptreact", "typescriptreact"],
+  "eslint.format.enable": true,
+  "eslint.codeActionsOnSave.mode": "all",
+  "eslint.enable": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+}
+
+
+
+//////
+
+
+{
+  "recommendations": [
+    "formulahendry.auto-rename-tag",
+    "streetsidesoftware.code-spell-checker",
+    "clinyong.vscode-css-modules",
+    "mikestead.dotenv",
+    "dsznajder.es7-react-js-snippets",
+    "eamodio.gitlens",
+    "pkief.material-icon-theme",
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "sibiraj-s.vscode-scss-formatter",
+    "mrmlnc.vscode-scss",
+    "meganrogge.template-string-converter",
+    "dbaeumer.vscode-eslint"
+  ]
+}
+
+
